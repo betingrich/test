@@ -29,29 +29,36 @@
         <button id="task-button">Go to Tasks</button>
     </div>
     <script>
-        const username = localStorage.getItem("username") || "Guest";
-        document.getElementById("welcome-message").textContent = `Welcome, ${username}`;
+    const username = localStorage.getItem("username") || "Guest";
+    document.getElementById("welcome-message").textContent = `Welcome, ${username}`;
 
-        const taskButton = document.getElementById("task-button");
-        taskButton.addEventListener("click", () => {
-            window.location.href = "task.html";
-        });
+    const taskButton = document.getElementById("task-button");
+    taskButton.addEventListener("click", () => {
+        window.location.href = "task.html";
+    });
 
-        function updateClocks() {
-            const now = new Date();
-            document.getElementById("local-time").textContent = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
-            document.getElementById("local-date").textContent = now.toLocaleDateString();
+    function formatDateString(date) {
+        const options = { weekday: "long", day: "numeric", month: "long", year: "numeric" };
+        return date.toLocaleDateString("en-US", options);
+    }
 
-            const londonTime = new Date(now.toLocaleString("en-US", { timeZone: "Europe/London" }));
-            document.getElementById("london-time").textContent = londonTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
-            document.getElementById("london-date").textContent = londonTime.toLocaleDateString();
+    function updateClocks() {
+        const now = new Date();
 
-            const nyTime = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
-            document.getElementById("ny-time").textContent = nyTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
-            document.getElementById("ny-date").textContent = nyTime.toLocaleDateString();
-        }
+        // Local time
+        document.getElementById("local-time").textContent = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+        document.getElementById("local-date").textContent = formatDateString(now);
 
-        setInterval(updateClocks, 1000); // Update clocks every second
+        // London time
+        const londonTime = new Date(now.toLocaleString("en-US", { timeZone: "Europe/London" }));
+        document.getElementById("london-time").textContent = londonTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+        document.getElementById("london-date").textContent = formatDateString(londonTime);
+
+        // New York time
+        const nyTime = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
+        document.getElementById("ny-time").textContent = nyTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+        document.getElementById("ny-date").textContent = formatDateString(nyTime);
+    }
+
+    setInterval(updateClocks, 1000); // Update clocks every second
     </script>
-</body>
-</html>
