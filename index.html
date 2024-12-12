@@ -3,56 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Reminder & Clock</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Username Input Page -->
-    <div id="username-page" class="page active">
+    <div class="page" id="username-page">
         <div class="tile">
             <h1>Enter Your Name</h1>
-            <input type="text" id="username" class="input-field" placeholder="Enter your name">
-            <button class="cta-button" onclick="setUsername()">Continue</button>
+            <input type="text" id="username" placeholder="Enter your name" class="animated-border">
+            <button id="continue-button">Continue</button>
         </div>
     </div>
+    <script>
+        const continueButton = document.getElementById("continue-button");
+        const usernameInput = document.getElementById("username");
 
-    <!-- Clock Page -->
-    <div id="clock-page" class="page">
-        <h1 id="welcome-message"></h1>
-        <div class="clocks-container">
-            <div class="clock-card">
-                <h2>Your Time</h2>
-                <div class="time-display" id="local-time"></div>
-                <div class="date-display" id="local-date"></div>
-            </div>
-            <div class="clock-card">
-                <h2>London</h2>
-                <div class="time-display" id="london-time"></div>
-                <div class="date-display" id="london-date"></div>
-            </div>
-            <div class="clock-card">
-                <h2>New York</h2>
-                <div class="time-display" id="ny-time"></div>
-                <div class="date-display" id="ny-date"></div>
-            </div>
-        </div>
-        <button class="cta-button" onclick="navigateTo('task-page')">Set Tasks</button>
-    </div>
-
-    <!-- Task Manager Page -->
-    <div id="task-page" class="page">
-        <div class="tile">
-            <h1>Add Tasks</h1>
-            <form id="task-form">
-                <input type="time" id="task-time" class="input-field" min="06:00" max="23:00" step="900" required>
-                <input type="text" id="task-name" class="input-field" placeholder="Task Name" required>
-                <button type="submit" class="cta-button">Add Task</button>
-            </form>
-        </div>
-        <ul id="task-list" class="task-list"></ul>
-        <button class="cta-button" onclick="navigateTo('clock-page')">Back to Clocks</button>
-    </div>
-
-    <script src="script.js"></script>
+        continueButton.addEventListener("click", () => {
+            const username = usernameInput.value.trim();
+            if (username) {
+                localStorage.setItem("username", username); // Save username to localStorage
+                window.location.href = "clock.html"; // Navigate to clock page
+            } else {
+                alert("Please enter your name.");
+            }
+        });
+    </script>
 </body>
 </html>
