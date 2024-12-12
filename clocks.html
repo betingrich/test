@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clocks</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="clock-page">
+    <div class="header">
+        <h1 id="greeting" class="welcome-message"></h1>
+    </div>
+    <div class="clocks-container">
+        <div class="clock-card">
+            <h2>Your Time</h2>
+            <div id="local-time" class="time-display"></div>
+            <div id="local-date" class="date-display"></div>
+        </div>
+        <div class="clock-card">
+            <h2>London</h2>
+            <div id="london-time" class="time-display"></div>
+            <div id="london-date" class="date-display"></div>
+        </div>
+        <div class="clock-card">
+            <h2>America</h2>
+            <div id="america-time" class="time-display"></div>
+            <div id="america-date" class="date-display"></div>
+        </div>
+    </div>
+    <button class="cta-button" onclick="window.location.href='tasks.html'">Go to Task Manager</button>
+    <script src="script.js"></script>
+</body>
+</html>
