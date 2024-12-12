@@ -3,27 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Tasks</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1 id="user-welcome"></h1>
-        <div id="task-list">
-            <h2>Set Your Tasks</h2>
-            <form id="task-form">
-                <label for="time">Time:</label>
-                <select id="time">
-                    <option value="" disabled selected>Select Time</option>
-                </select>
-                <label for="task">Task:</label>
-                <input type="text" id="task" placeholder="Enter your task">
-                <button type="button" onclick="addTask()">Add Task</button>
-            </form>
-            <ul id="tasks"></ul>
-        </div>
+    <div class="page" id="task-page">
+        <h1>Tasks</h1>
+        <form id="task-form">
+            <label for="task-time">Time:</label>
+            <input type="time" id="task-time" required>
+            <label for="task-name">Task:</label>
+            <input type="text" id="task-name" placeholder="Enter task" required>
+            <button type="submit">Add Task</button>
+        </form>
+        <ul id="task-list"></ul>
+        <button onclick="window.location.href='clock.html'">Back to Clock</button>
     </div>
+    <script>
+        const taskForm = document.getElementById("task-form");
+        const taskList = document.getElementById("task-list");
 
-    <script src="script.js"></script>
+        taskForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const taskTime = document.getElementById("task-time").value;
+            const taskName = document.getElementById("task-name").value;
+
+            if (taskTime && taskName) {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `${taskTime} - ${taskName} <input type="checkbox">`;
+                taskList.appendChild(listItem);
+                taskForm.reset();
+            } else {
+                alert("Please fill out both fields.");
+            }
+        });
+    </script>
 </body>
 </html>
