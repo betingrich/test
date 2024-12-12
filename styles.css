@@ -1,16 +1,32 @@
-/* General */
+/* General Settings */
 body {
-    font-family: 'Roboto', sans-serif;
     margin: 0;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    color: #fff;
+    padding: 0;
+    background: black;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    overflow-x: hidden;
 }
 
-h1, h2 {
-    margin: 0;
+/* Animated Background */
+@keyframes rainbow {
+    0% { background-color: #ff0000; }
+    20% { background-color: #ffa500; }
+    40% { background-color: #ffff00; }
+    60% { background-color: #008000; }
+    80% { background-color: #0000ff; }
+    100% { background-color: #4b0082; }
 }
 
-.landing-page, .clock-page, .task-page {
+body {
+    animation: rainbow 10s infinite alternate;
+    background-size: 400% 400%;
+}
+
+/* Centering Content */
+.landing-page,
+.clock-page,
+.task-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,83 +35,131 @@ h1, h2 {
     padding: 20px;
 }
 
-.brand-title {
+/* Titles */
+h1, h2 {
     font-size: 2.5rem;
-    margin-bottom: 10px;
+    text-align: center;
+    margin: 0;
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
 }
 
-.brand-tagline {
-    font-size: 1rem;
-    margin-bottom: 30px;
-}
-
+/* Input Fields */
 .input-field {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
+    width: 80%;
+    max-width: 300px;
+    padding: 15px;
+    border-radius: 25px;
+    border: 2px solid white;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    text-align: center;
     margin-bottom: 20px;
 }
 
+/* Buttons */
 .cta-button {
-    background: #ff7b54;
+    padding: 15px 25px;
+    border-radius: 25px;
+    border: 2px solid transparent;
+    background: linear-gradient(to right, #ff00ff, #ff7b54, #00ffcc);
     color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: 0.4s;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .cta-button:hover {
-    background: #ff5733;
+    border: 2px solid white;
+    transform: scale(1.1);
+    background: linear-gradient(to right, #00ffcc, #ff7b54, #ff00ff);
 }
 
-/* Clocks */
+/* Clock Cards */
 .clocks-container {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
 }
 
 .clock-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid white;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     padding: 20px;
-    border-radius: 8px;
     text-align: center;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.clock-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
 .time-display {
     font-size: 2rem;
-    margin-top: 10px;
+    color: #00ffcc;
 }
 
 .date-display {
     font-size: 1rem;
+    color: #ffa500;
     opacity: 0.8;
 }
 
-/* Tasks */
+/* Task Manager */
+.task-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid white;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
 .task-form {
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    gap: 15px;
     margin-bottom: 20px;
 }
 
 .task-list {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .task-list li {
     background: rgba(255, 255, 255, 0.1);
-    margin-bottom: 10px;
+    margin: 10px 0;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid white;
+}
+
+.task-list li:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .clocks-container {
+        grid-template-columns: 1fr;
+    }
+
+    h1, h2 {
+        font-size: 2rem;
+    }
 }
