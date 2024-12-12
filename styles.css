@@ -6,6 +6,12 @@ body {
     background: black;
     color: white;
     overflow-x: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: rainbowBackground 10s infinite alternate;
 }
 
 .page {
@@ -13,16 +19,17 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
     padding: 20px;
+    width: 100%;
 }
 
 .page.active {
     display: flex;
 }
 
-/* Animated Background */
-@keyframes rainbow {
+/* Animated Rainbow Background */
+@keyframes rainbowBackground {
     0% { background-color: #ff0000; }
     25% { background-color: #ffa500; }
     50% { background-color: #ffff00; }
@@ -30,15 +37,12 @@ body {
     100% { background-color: #4b0082; }
 }
 
-body {
-    animation: rainbow 10s infinite alternate;
-}
-
 /* Titles and Inputs */
 h1, h2 {
     text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff;
     text-align: center;
     margin: 10px 0;
+    font-size: 2rem;
 }
 
 .input-field {
@@ -47,10 +51,26 @@ h1, h2 {
     padding: 10px;
     margin: 10px 0;
     border-radius: 25px;
-    border: 2px solid white;
+    border: 2px solid transparent;
     background: rgba(255, 255, 255, 0.1);
     color: white;
     text-align: center;
+    transition: border 1s ease-in-out;
+}
+
+.input-field:focus {
+    border: 2px solid transparent;
+    background: rgba(255, 255, 255, 0.3);
+    animation: rainbowBorder 3s infinite alternate;
+}
+
+/* Animated Rainbow Borders */
+@keyframes rainbowBorder {
+    0% { border-color: #ff0000; }
+    25% { border-color: #ffa500; }
+    50% { border-color: #ffff00; }
+    75% { border-color: #008000; }
+    100% { border-color: #4b0082; }
 }
 
 /* Buttons */
@@ -63,17 +83,21 @@ h1, h2 {
     font-weight: bold;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
+    margin-top: 20px;
+    align-self: center;
 }
 
 .cta-button:hover {
     transform: scale(1.1);
 }
 
-/* Clock Cards */
+/* Clocks Page */
 .clocks-container {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     gap: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
 }
 
 .clock-card {
@@ -85,11 +109,19 @@ h1, h2 {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
+.time-display, .date-display {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
 /* Task Manager */
 .task-list {
     list-style: none;
     padding: 0;
     margin: 20px 0;
+    max-height: 50vh;
+    overflow-y: auto;
 }
 
 .task-list li {
@@ -99,4 +131,8 @@ h1, h2 {
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
+}
+
+.task-list input[type="checkbox"] {
+    margin-left: 10px;
 }
