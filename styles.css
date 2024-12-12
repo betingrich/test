@@ -3,17 +3,17 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background: black;
+    background: black; /* Solid black background */
     color: white;
-    overflow-x: hidden;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    animation: rainbowBackground 10s infinite alternate;
+    overflow: hidden;
 }
 
+/* Page Layout */
 .page {
     display: none;
     flex-direction: column;
@@ -28,15 +28,6 @@ body {
     display: flex;
 }
 
-/* Rainbow Background */
-@keyframes rainbowBackground {
-    0% { background-color: #ff0000; }
-    25% { background-color: #ffa500; }
-    50% { background-color: #ffff00; }
-    75% { background-color: #008000; }
-    100% { background-color: #4b0082; }
-}
-
 /* Titles and Inputs */
 h1, h2 {
     text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff;
@@ -45,52 +36,57 @@ h1, h2 {
     font-size: 2rem;
 }
 
-/* Centered input field styling with animated borders */
+/* Centered input field styling */
 .input-field {
     width: 80%;
     max-width: 350px;
     padding: 12px;
     margin: 10px 0;
     border-radius: 25px;
-    border: 2px solid transparent;
+    border: 2px solid white;
     background: rgba(255, 255, 255, 0.1);
     color: white;
     text-align: center;
-    transition: border 1s ease-in-out;
     font-size: 1.2rem;
 }
 
 .input-field:focus {
-    border: 2px solid transparent;
-    background: rgba(255, 255, 255, 0.3);
-    animation: rainbowBorder 3s infinite alternate;
-}
-
-/* Animated Rainbow Borders */
-@keyframes rainbowBorder {
-    0% { border-color: #ff0000; }
-    25% { border-color: #ffa500; }
-    50% { border-color: #ffff00; }
-    75% { border-color: #008000; }
-    100% { border-color: #4b0082; }
+    border-color: #ff00ff;
+    outline: none;
 }
 
 /* Buttons */
 .cta-button {
     padding: 10px 20px;
     border-radius: 25px;
-    border: 2px solid transparent;
+    border: 2px solid white;
     background: linear-gradient(to right, #ff00ff, #ff7b54, #00ffcc);
     color: white;
     font-weight: bold;
     cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-    margin-top: 20px;
     font-size: 1.2rem;
+    width: 80%;
+    max-width: 350px;
+    text-align: center;
+    margin-top: 20px;
+    transition: transform 0.3s ease-in-out;
 }
 
 .cta-button:hover {
     transform: scale(1.1);
+}
+
+/* Username Page Layout */
+#username-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#username-page .input-field {
+    margin-bottom: 30px; /* Adds spacing between input and button */
 }
 
 /* Clocks Page */
@@ -139,7 +135,6 @@ h1, h2 {
     margin-left: 10px;
 }
 
-/* Task Page Styles */
 #task-page h1 {
     margin-top: 0;
     font-size: 2.5rem;
@@ -171,7 +166,7 @@ h1, h2 {
 }
 
 @media only screen and (max-width: 768px) {
-    /* Ensure mobile responsiveness for smaller screens */
+    /* Mobile Responsiveness */
     .page {
         padding: 10px;
     }
