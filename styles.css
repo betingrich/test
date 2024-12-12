@@ -20,15 +20,15 @@ body {
     align-items: center;
     justify-content: center;
     height: 100%;
-    padding: 20px;
     width: 100%;
+    padding: 20px;
 }
 
 .page.active {
     display: flex;
 }
 
-/* Animated Rainbow Background */
+/* Rainbow Background */
 @keyframes rainbowBackground {
     0% { background-color: #ff0000; }
     25% { background-color: #ffa500; }
@@ -45,10 +45,11 @@ h1, h2 {
     font-size: 2rem;
 }
 
+/* Centered input field styling with animated borders */
 .input-field {
     width: 80%;
-    max-width: 300px;
-    padding: 10px;
+    max-width: 350px;
+    padding: 12px;
     margin: 10px 0;
     border-radius: 25px;
     border: 2px solid transparent;
@@ -56,6 +57,7 @@ h1, h2 {
     color: white;
     text-align: center;
     transition: border 1s ease-in-out;
+    font-size: 1.2rem;
 }
 
 .input-field:focus {
@@ -84,7 +86,7 @@ h1, h2 {
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
     margin-top: 20px;
-    align-self: center;
+    font-size: 1.2rem;
 }
 
 .cta-button:hover {
@@ -115,7 +117,7 @@ h1, h2 {
     margin-top: 10px;
 }
 
-/* Task Manager */
+/* Task Manager Page */
 .task-list {
     list-style: none;
     padding: 0;
@@ -135,4 +137,42 @@ h1, h2 {
 
 .task-list input[type="checkbox"] {
     margin-left: 10px;
+}
+
+/* Task Page Styles */
+#task-page h1 {
+    margin-top: 0;
+    font-size: 2.5rem;
+}
+
+#task-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#task-form button {
+    margin-top: 20px;
+}
+
+#task-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#task-list li {
+    width: 80%;
+    max-width: 350px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+    /* Ensure mobile responsiveness for smaller screens */
+    .page {
+        padding: 10px;
+    }
 }
