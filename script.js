@@ -1,45 +1,73 @@
-// Greeting Users
-if (document.getElementById("greeting")) {
-    const username = localStorage.getItem("username");
-    document.getElementById("greeting").textContent = `Welcome, ${username}!`;
+// Select pages
+const usernamePage = document.getElementById("username-page");
+const clockPage = document.getElementById("clock-page");
+const taskPage = document.getElementById("task-page");
+
+// Function to navigate between pages
+function navigateTo(pageId) {
+    const allPages = document.querySelectorAll(".page");
+    allPages.forEach((page) => page.classList.remove("active")); // Hide all pages
+    document.getElementById(pageId).classList.add("active"); // Show the selected page
 }
 
-// Clocks
-function updateClocks() {
-    const localTime = new Date();
-    document.getElementById("local-time").textContent = localTime.toLocaleTimeString();
-    document.getElementById("local-date").textContent = localTime.toDateString();
+// Function to set the username and navigate to clock page
+function setUsername() {
+    const usernameInput = document.getElementById("username");
+    const username = usernameInput.value.trim();
 
-    const londonTime = new Date(localTime.toLocaleString("en-US", { timeZone: "Europe/London" }));
-    document.getElementById("london-time").textContent = londonTime.toLocaleTimeString();
-    document.getElementById("london-date").textContent = londonTime.toDateString();
-
-    const americaTime = new Date(localTime.toLocaleString("en-US", { timeZone: "America/New_York" }));
-    document.getElementById("america-time").textContent = americaTime.toLocaleTimeString();
-    document.getElementById("america-date").textContent = americaTime.toDateString();
-}
-
-if (document.getElementById("local-time")) setInterval(updateClocks, 1000);
-
-// Tasks
-if (document.getElementById("time")) {
-    const timeSelect = document.getElementById("time");
-    for (let i = 360; i <= 1380; i += 15) {
-        const hours = Math.floor(i / 60);
-        const minutes = i % 60;
-        timeSelect.innerHTML += `<option>${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}</option>`;
-    }
-}
-
-function addTask() {
-    const time = document.getElementById("time").value;
-    const task = document.getElementById("task").value;
-    if (time && task) {
-        const tasks = document.getElementById("tasks");
-        const li = document.createElement("li");
-        li.innerHTML = `<span>${time}: ${task}</span><input type="checkbox">`;
-        tasks.appendChild(li);
+    if (username) {
+        document.getElementById("welcome-message").textContent = `Welcome, ${username}`;
+        navigateTo("clock-page"); // Go to the clock page
     } else {
-        alert("Fill out all fields!");
+        alert("Please enter your name."); // Notify user if the name is not entered
     }
 }
+
+// Populate clocks
+function updateClocks() {
+    const now = new Date();
+
+    // Local time
+    const localTime = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    const localDate = now.toLocaleDateString();
+    document.getElementById("local-time").textContent = localTime;
+    document.getElementById("local-date").textContent = localDate;
+
+    // London time
+    const londonTime = new Date(now.toLocaleString("en-US", { timeZone: "Europe/London" }));
+    document.getElementById("london-time").textContent = londonTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    document.getElementById("london-date").textContent = londonTime.toLocaleDateString();
+
+    // New York time
+    const nyTime = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
+    document.getElementById("ny-time").textContent = nyTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    document.getElementById("ny-date").textContent = nyTime.toLocaleDateString();
+}
+
+// Update clocks every second
+setInterval(updateClocks, 1000);
+
+// Task functionality
+const taskForm = document.getElementById("task-form");
+const taskList = document.getElementById("task-list");
+
+taskForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const taskTime = document.getElementById("task-time").value;
+    const taskName = document.getElementById("task-name").value;
+
+    if (taskTime && taskName) {
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `
+            ${taskTime} - ${taskName}
+            <input type="checkbox">
+        `;
+        taskList.appendChild(listItem);
+
+        // Clear form fields
+        taskForm.reset();
+    } else {
+        alert("Please fill out both fields.");
+    }
+});
