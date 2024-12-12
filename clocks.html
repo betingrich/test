@@ -3,31 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clocks</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Clock</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="clock-page">
-    <div class="header">
-        <h1 id="greeting" class="welcome-message"></h1>
+<body>
+    <div class="page" id="clock-page">
+        <h1 id="welcome-message">Welcome</h1>
+        <div class="tile">
+            <div>
+                <h2>Local Time</h2>
+                <p id="local-time"></p>
+                <p id="local-date"></p>
+            </div>
+            <div>
+                <h2>London</h2>
+                <p id="london-time"></p>
+                <p id="london-date"></p>
+            </div>
+            <div>
+                <h2>New York</h2>
+                <p id="ny-time"></p>
+                <p id="ny-date"></p>
+            </div>
+        </div>
+        <button id="task-button">Go to Tasks</button>
     </div>
-    <div class="clocks-container">
-        <div class="clock-card">
-            <h2>Your Time</h2>
-            <div id="local-time" class="time-display"></div>
-            <div id="local-date" class="date-display"></div>
-        </div>
-        <div class="clock-card">
-            <h2>London</h2>
-            <div id="london-time" class="time-display"></div>
-            <div id="london-date" class="date-display"></div>
-        </div>
-        <div class="clock-card">
-            <h2>America</h2>
-            <div id="america-time" class="time-display"></div>
-            <div id="america-date" class="date-display"></div>
-        </div>
-    </div>
-    <button class="cta-button" onclick="window.location.href='tasks.html'">Go to Task Manager</button>
-    <script src="script.js"></script>
+    <script>
+        const username = localStorage.getItem("username") || "Guest";
+        document.getElementById("welcome-message").textContent = `Welcome, ${username}`;
+
+        const taskButton = document.getElementById("task-button");
+        taskButton.addEventListener("click", () => {
+            window.location.href = "task.html"; // Navigate to task page
+        });
+
+        function updateClocks() {
+            const now = new Date();
+            document.getElementById("local-time").textContent = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+            document.getElementById("local-date").textContent = now.toLocaleDateString();
+
+            const londonTime = new Date(now.toLocaleString("en-US", { timeZone: "Europe/London" }));
+            document.getElementById("london-time").textContent = londonTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+            document.getElementById("london-date").textContent = londonTime.toLocaleDateString();
+
+            const nyTime = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
+            document.getElementById("ny-time").textContent = nyTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+            document.getElementById("ny-date").textContent = nyTime.toLocaleDateString();
+        }
+
+        setInterval(updateClocks, 1000); // Update clocks every second
+    </script>
 </body>
 </html>
