@@ -1,75 +1,95 @@
-/* General Page Styling */
+/* General styling for the page */
 body {
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
     background-color: black;
     color: white;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-.page {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    gap: 1rem;
-    padding: 20px;
+    justify-content: center;
+    min-height: 100vh;
 }
 
-/* Tiles Container Styling */
-.tiles-container {
+/* Container for the clocks */
+.clock-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    max-width: 100%;
+    gap: 15px;
+    margin: 20px;
 }
 
-/* Tile Styling */
-.tile {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 2px solid transparent;
-    padding: 20px;
-    width: 90%;
-    max-width: 400px;
+/* Tile for each clock */
+.clock-tile {
+    background-color: #1c1c1c;
+    border: 2px solid white;
     border-radius: 10px;
-    transition: border-color 0.3s ease-in-out;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-    text-align: center;
+    width: 280px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s;
 }
 
-.tile:hover {
-    border-color: rgba(0, 255, 255, 0.7);
+/* Hover effect for tiles */
+.clock-tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.3);
 }
 
-/* Clock Tile Specific Styling */
-.tile h2 {
-    font-size: 1.5rem;
+/* Styling for the clock time */
+.clock-time {
+    font-size: 24px;
+    font-weight: bold;
     margin-bottom: 10px;
+    color: #00ffcc;
 }
 
-.tile p {
-    font-size: 1.2rem;
-    margin: 5px 0;
+/* Styling for the date */
+.clock-date {
+    font-size: 16px;
+    color: #ff9900;
+    font-weight: 500;
 }
 
-/* Button Styling */
-button {
-    background-color: rgba(0, 255, 255, 0.8);
-    color: black;
+/* Button styling */
+#task-button {
+    background-color: #00ffcc;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
-    font-size: 1rem;
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s ease;
     margin-top: 20px;
-    transition: background-color 0.3s ease-in-out;
 }
 
-button:hover {
-    background-color: rgba(0, 200, 200, 0.8);
+#task-button:hover {
+    background-color: #00cca3;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .clock-tile {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .clock-time {
+        font-size: 20px;
+    }
+
+    .clock-date {
+        font-size: 14px;
+    }
 }
