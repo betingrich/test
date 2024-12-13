@@ -1,95 +1,149 @@
-/* General styling for the page */
+/* General Settings */
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: black;
+    font-family: 'Poppins', sans-serif;
+    background: black; /* Solid black background */
     color: white;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
-
-/* Container for the clocks */
-.clock-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px;
-}
-
-/* Tile for each clock */
-.clock-tile {
-    background-color: #1c1c1c;
-    border: 2px solid white;
-    border-radius: 10px;
-    width: 280px;
-    height: 150px;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
-    position: relative;
+    flex-direction: column;
     overflow: hidden;
-    transition: transform 0.2s ease-in-out, box-shadow 0.3s;
 }
 
-/* Hover effect for tiles */
-.clock-tile:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.3);
+.page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
 }
 
-/* Styling for the clock time */
-.clock-time {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #00ffcc;
+.page.active {
+    display: flex;
 }
 
-/* Styling for the date */
-.clock-date {
-    font-size: 16px;
-    color: #ff9900;
-    font-weight: 500;
+/* Tile Design */
+.tile {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
 }
 
-/* Button styling */
-#task-button {
-    background-color: #00ffcc;
-    border: none;
-    border-radius: 5px;
+.tile h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 0 0 5px #fff;
+}
+
+/* Input Fields */
+.input-field {
+    width: 90%;
+    max-width: 350px;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 25px;
+    border: 2px solid white;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.input-field:focus {
+    border-color: #00ffff;
+    outline: none;
+}
+
+/* Buttons */
+.cta-button {
     padding: 10px 20px;
-    font-size: 18px;
-    color: black;
+    border-radius: 25px;
+    border: 2px solid white;
+    background: linear-gradient(to right, #ff7b54, #ff00ff);
+    color: white;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 1.2rem;
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
     margin-top: 20px;
+    transition: transform 0.3s ease-in-out;
 }
 
-#task-button:hover {
-    background-color: #00cca3;
+.cta-button:hover {
+    transform: scale(1.1);
 }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .clock-tile {
-        width: 90%;
-        height: auto;
-        padding: 20px;
+/* Clocks */
+.clocks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+    align-items: center;
+}
+
+.clock-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.time-display, .date-display {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Task List */
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    max-height: 50vh;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.task-list li {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-list input[type="checkbox"] {
+    margin-left: 10px;
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 768px) {
+    .page {
+        padding: 10px;
     }
 
-    .clock-time {
-        font-size: 20px;
-    }
-
-    .clock-date {
-        font-size: 14px;
+    .tile {
+        padding: 15px;
     }
 }
